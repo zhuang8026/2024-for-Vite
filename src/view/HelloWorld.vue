@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-import UiButton from '@/components/Button.vue';
+import UiButton from '@/components/ui/UiButton/index.vue';
 
 defineProps<{ msg: string }>();
 
