@@ -8,3 +8,10 @@ export const ROLE = {
     USER: 'user',
     ALL: 'all'
 };
+
+export const ENV = {
+    DEV: 'DEV',
+    PROD: 'PROD',
+    STSGING: 'STAGING',
+    MOCK: 'MOCK'
+};

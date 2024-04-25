@@ -1,7 +1,10 @@
 {
-	"id": 25,
-	"userEmail": "user@example.com",
-	"userName": "Sharon Lin",
-	"role": "user",
-	"lastLoginDateTime": 0
+    "code": 200,
+    "data": {
+        "id": 25,
+        "userEmail": "user@example.com",
+        "userName": "Sharon Lin",
+        "role": "user",
+        "lastLoginDateTime": 0
+    }
 }
