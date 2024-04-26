@@ -15,3 +15,8 @@ export const ENV = {
     STSGING: 'STAGING',
     MOCK: 'MOCK'
 };
+
+export const COOKIE_NAME = {
+	TOKEN: 'WILLIAMS_TOKEN',
+
+}

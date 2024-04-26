@@ -18,6 +18,7 @@ const routes = [
     },
     {
         path: '/login',
+        name: 'Login',
         component: Login,
         meta: {
             requiresAuth: false // 不需要登录(token)
@@ -32,7 +33,7 @@ const routes = [
     },
     {
         path: '/account',
-        name: 'Index',
+        name: 'Account',
         component: Profile,
         meta: {
             requiresAuth: true

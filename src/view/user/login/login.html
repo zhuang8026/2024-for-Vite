@@ -1,5 +1,8 @@
-
 <section class="login">
-  <h1>login Component</h1>
+    <h1>login Component</h1>
+    <div class="login-form">
+        <input type="text" placeholder="account" v-model="state.account" />
+        <input type="password" placeholder="password" v-model="state.password" />
+        <button @click="login">login</button>
+    </div>
 </section>
-

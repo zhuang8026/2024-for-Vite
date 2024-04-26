@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useGlobalStore } from '@/store/index';
 
 // enum 映射
-import { ENV } from '@/assets/enum/enum';
+import { COOKIE_NAME, ENV } from '@/assets/enum/enum';
 
 // utils 工具
 import { getCookie } from '@/utils/cookie';
@@ -26,6 +26,10 @@ export const apiRequest = async (method, url, auth, params = null) => {
     let hostURL: string = '';
     let hostName: string = '';
     let apiURL: string = 'api/';
+    let headers = {
+        // 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+        // 'Content-Type': 'application/json',
+    };
 
     let globalApiURL: any = axios.create({});
 
@@ -79,61 +83,34 @@ export const apiRequest = async (method, url, auth, params = null) => {
         case ENV.DEV:
         case ENV.PROD:
         case ENV.STSGING:
-            // const token = getCookie('William_token0987654321234567890987654321234567890987654321');
-            const token = `Token rHRIlM54Is/wO3/WCxlacg==`; // todo: temp for phase 3
-            globalApiURL.defaults.headers.common['Authorization'] = `Token ${token}`;
+            const token = getCookie(COOKIE_NAME.TOKEN);
+            // const token = `Token rHRIlM54Is/wO3/WCxlacg==`;
+            console.log('token', token);
+            // globalApiURL.defaults.headers.common['Authorization'] = `Token ${token}`;
+            headers['Authorization'] = `Token ${token}`;
             axionInit(globalApiURL, hostURL);
             break;
     }
 
     try {
         globalApiURL = await axios({
+            headers,
             method,
             url: hostURL + url,
             data: params
         });
-        const { status, data } = globalApiURL;
 
+        const { status, data } = globalApiURL;
+        console.log('globalApiURL', globalApiURL);
         if (status === 200) {
-            return data;
+            return {
+                code: status,
+                data: data
+            };
         } else {
             console.log(`API ERROR: ${data.message}`);
         }
     } catch (error) {
         return error;
     }
-
-    // appApiReq = axios.create({
-    //     baseURL: hostAppURL
-    // });
-    // const token = getCookie('William_token0987654321234567890987654321234567890987654321');
-    // appApiReq.defaults.headers.common['Authorization'] = `Token ${token}`;
-    // console.log('hostAppURL', hostAppURL);
-
-    // 03 - api request via different env
-
-    // switch (apiEnv) {
-    //     case ENV.MOCK:
-    //         apiAppSensorDetect = () => store.apiReq.get('apiAppSensorDetect.json');
-    //         apiGetDevice = () => store.apiReq.get(`apiGetDevice.json`);
-    //         apiGetLocation = () => store.apiReq.get(`apiGetLocation.json`);
-    //         apiDelLocation = () => store.apiReq.get(`apiDelLocation.json`);
-    //         apiAddLocation = () => store.apiReq.get(`apiAddLocation.json`);
-    //         apiUpdateLocation = () => store.apiReq.get(`apiUpdateLocation.json`);
-
-    //         break;
-    //     case ENV.DEV:
-    //     case ENV.STSGING:
-    //     case ENV.PROD:
-    //         apiAppSensorDetect = () =>
-    //             appApiReq.post('/sensor/scan/', { hostname: hostName.split('://')[1] });
-    //         apiGetDevice = () => store.apiReq.get(apiURLEquipment); // get data
-    //         // location
-    //         apiGetLocation = () => store.apiReq.get(apiURLLocation);
-    //         apiDelLocation = id => store.apiReq.delete(`${apiURLLocation}/${id}`);
-    //         apiAddLocation = data => store.apiReq.post(`${apiURLLocation}`, data);
-    //         apiUpdateLocation = (id, data) => store.apiReq.patch(`${apiURLLocation}/${id}`, data);
-
-    //         break;
-    // } //end: switch
 };

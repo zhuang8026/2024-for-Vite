@@ -12,7 +12,7 @@ import routes from '@/router/routes.ts';
 import { useGlobalStore } from '@/store';
 
 // until
-// import { checkUserPermission } from '@/utils/globalUtils';
+import { Permissions } from '@/utils/permission';
 
 /**
  * @ts-ignore 是 TypeScript 中的一个特殊注释，用于告诉 TypeScript 编译器忽略下一行或下一段代码的类型检查。
@@ -37,20 +37,22 @@ export const router = createRouter({
     }
 });
 
-let firstEntering = true;
+// let firstEntering = true;
 router.beforeEach(async (to, from, next) => {
     let store = useGlobalStore();
-    console.log('beforeEach', store.userRole);
+    console.log('user role:', store.userRole);
     window.scrollTo(0, 0);
 
     // check permission
     let env = import.meta.env.VITE_ENV; //現在環境
     console.log('env', env);
-    const isRequiresAuth = to.meta.requiresAuth; // 检查路由是否需要登录
-    const pageName = to.name;
+    const isRequiresAuth = to.meta.requiresAuth as boolean; // 检查路由是否需要登录
+    const pageName = to.name as string;
 
-    if (from.name == 'Login') firstEntering = true;
+    // if (from.name == 'Login') firstEntering = true;
 
+    console.log('check user permission');
+    // check user permission
     if (isRequiresAuth) {
         // if (firstEntering) {
         //     let data = await checkUserPermission();
@@ -60,17 +62,18 @@ router.beforeEach(async (to, from, next) => {
         // }
 
         console.log('to', pageName);
-        // let permisson = permissionMapping[pageName];
-        // let currentRole = store.userRole;
+        let permisson = Permissions[pageName];
+        let currentRole = store.userRole;
         let isHasAuth = false;
-        // console.log('permisson', permisson);
-        // if (typeof permisson == 'string') {
-        //     isHasAuth = true;
-        //     console.log('isHasAuth', isHasAuth);
-        // } else {
-        //     isHasAuth = permisson.includes(currentRole);
-        // }
 
+        if (typeof permisson == 'string') {
+            isHasAuth = true;
+        } else {
+            isHasAuth = permisson.includes(currentRole);
+        }
+        console.log('permisson', permisson);
+        console.log('currentRole', currentRole);
+        console.log('isHasAuth', isHasAuth);
         isHasAuth ? next() : next('/login');
     } //end: if isRequiresAuth
     else {

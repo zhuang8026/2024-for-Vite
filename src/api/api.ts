@@ -6,10 +6,23 @@ import { apiRequest } from '@/api/apiRequest.ts';
 let apiEnv = import.meta.env.VITE_ENV; //現在環境
 console.log('apiEnv', apiEnv);
 
-export const apiURLUser = async () => {
-    console.log('apiURLUser');
+export const apiLogin = async payload => {
     // 如果是开发环境，直接返回模拟数据
-    const url = apiEnv === ENV.MOCK ? `apiUser.json` : `/account/user/`;
+    const url = apiEnv === ENV.MOCK ? `apiLogin.json` : `account/login/`;
+    const res = await apiRequest('POST', url, true, payload);
+    return res;
+};
+
+export const apiLogout = async () => {
+    // 如果是开发环境，直接返回模拟数据
+    const url = apiEnv === ENV.MOCK ? `apiLogout.json` : `account/logout/`;
+    const res = await apiRequest('POST', url, true);
+    return res;
+};
+
+export const apiURLUser = async () => {
+    // 如果是开发环境，直接返回模拟数据
+    const url = apiEnv === ENV.MOCK ? `apiUser.json` : `account/user/`;
     const res = await apiRequest('GET', url, true);
     return res;
 };
