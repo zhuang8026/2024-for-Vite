@@ -1,12 +1,13 @@
 export const FUN_NAME = {
-    LOGIN: 'login'
+    LOGIN: 'login',
 };
 
 export const ROLE = {
     ADMIN: 'admin',
     POWERUSER: 'poweruser',
     USER: 'user',
-    ALL: 'all'
+    ALL: 'all',
+    NONE: 'none'
 };
 
 export const ENV = {

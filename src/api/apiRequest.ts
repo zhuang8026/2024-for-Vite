@@ -98,7 +98,11 @@ export const apiRequest = async (method, url, auth, params = null) => {
         } else {
             console.log(`API ERROR: ${data.message}`);
         }
-    } catch (error) {
-        return error;
+    } catch (error: any) {
+        console.log(`API ERROR:`, error);
+        return  {
+            code: error.response.status,
+            data: error.message
+        };;
     }
 };

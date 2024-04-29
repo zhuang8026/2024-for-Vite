@@ -12,6 +12,7 @@ import routes from '@/router/routes.ts';
 import { useGlobalStore } from '@/store';
 
 // until
+import { ROLE } from '@/assets/enum/enum';
 import { Permissions } from '@/utils/permission';
 import { apiCheckUserPermission } from '@/utils/globalUtils';
 
@@ -45,25 +46,24 @@ router.beforeEach(async (to, from, next) => {
 
     // check permission
     // let env = import.meta.env.VITE_ENV; //現在環境
-    // console.log('env', env);
     const isRequiresAuth = to.meta.requiresAuth as boolean; // 检查路由是否需要登录
     const pageName = to.name as string;
-
+    let isHasAuth = false;
     // if (from.name == 'Login') firstEntering = true;
 
     // check user permission
     if (isRequiresAuth) {
         let res: any = await apiCheckUserPermission(); // 取得用戶基本資料
-        console.log('check user permission', res);
         if (res.code == 200) {
             let role = res.data.role;
             store.setRole(role);
+        } else {
+            let role = ROLE.NONE;
+            store.setRole(role);
         }
 
-        // console.log('to', pageName);
         let permisson = Permissions[pageName];
         let currentRole = store.userRole;
-        let isHasAuth = false;
 
         /**
          * check permission
@@ -76,10 +76,12 @@ router.beforeEach(async (to, from, next) => {
         } else {
             isHasAuth = permisson.includes(currentRole);
         }
+        isHasAuth ? next() : next('/login');
+
+        console.log('to', pageName);
         console.log('permisson', permisson);
         console.log('currentRole', currentRole);
         console.log('isHasAuth', isHasAuth);
-        isHasAuth ? next() : next('/login');
     } else {
         next();
     }

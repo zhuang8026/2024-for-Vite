@@ -7,6 +7,7 @@ import { useGlobalStore } from '@/store';
 
 // component & style
 import Menu from '@/components/ui/Menu';
+import Footer from '@/components/ui/Footer';
 
 // enum 映射
 // import { COOKIE_NAME } from '@/assets/enum/enum';
@@ -18,13 +19,11 @@ import { setCookie, getCookie } from '@/utils/cookie';
 //api
 // import { apiLogin, apiGetMyInfo } from '@/api/api.ts';
 
-// version
-import { PROJECT_VERSION } from '@/config.ts';
-
 const App = {
     name: 'App',
     components: {
-        Menu
+        Menu,
+        Footer
     },
     props: {},
     setup() {
@@ -37,7 +36,6 @@ const App = {
             return route.meta.layout;
         });
         return {
-            PROJECT_VERSION,
             renderLayout
         };
     }

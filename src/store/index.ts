@@ -1,7 +1,7 @@
-import { ROLE } from '@/assets/enum/enum';
+
 import axios from 'axios';
 import { defineStore } from 'pinia';
-import { FUN_NAME } from '@/assets/enum/enum';
+import { FUN_NAME, ROLE } from '@/assets/enum/enum';
 
 export const useGlobalStore = defineStore({
     id: 'globalStore',
@@ -9,7 +9,7 @@ export const useGlobalStore = defineStore({
         isFirstLogin: true,
         apiRequestCount: 0, // 統計 api 呼叫總數
         apiReq: axios.create({}),
-        userRole: ROLE.ALL,
+        userRole: ROLE.NONE,
         sensorDetectSlectedId: '', // detect-sensor selected id, wheen detect, add it
         isLoadingOpen: false,
         isLoadingTest: 'Loading',

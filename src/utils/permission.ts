@@ -2,6 +2,7 @@ import { ROLE } from '@/assets/enum/enum';
 
 // 用戶權限 頁面設定
 export const Permissions = {
+    Login: ROLE.NONE,
     Account: ROLE.ALL,
     Profile: [ROLE.ADMIN, ROLE.POWERUSER],
     Password: [ROLE.ADMIN, ROLE.POWERUSER],

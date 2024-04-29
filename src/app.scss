@@ -1,0 +1,21 @@
+.app-body {
+    // display: grid;
+    // gap: 1rem;
+    // grid-gap: 1rem;
+    // grid-template-columns: repeat(2, 1fr);
+
+    display: flex;
+    width: 100%;
+    .body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .has-menu {
+        width: calc(100% - 300px);
+    }
+    .no-menu {
+        width: calc(100%);
+    }
+}
