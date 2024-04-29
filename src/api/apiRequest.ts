@@ -1,7 +1,7 @@
 // framework
-import { useRoute, useRouter } from 'vue-router';
+// import { useRoute, useRouter } from 'vue-router';
 import axios from 'axios';
-import { useGlobalStore } from '@/store/index';
+// import { useGlobalStore } from '@/store/index';
 
 // enum 映射
 import { COOKIE_NAME, ENV } from '@/assets/enum/enum';
@@ -9,7 +9,7 @@ import { COOKIE_NAME, ENV } from '@/assets/enum/enum';
 // utils 工具
 import { getCookie } from '@/utils/cookie';
 import { axionInit } from '@/api/axionInit.ts';
-import { filterQueryHandle } from '@/utils/globalUtils';
+// import { filterQueyrHandle } from '@/utils/globalUtils';
 
 // component
 // import uiLoading from '@/components/ui/Loading/index';
@@ -18,7 +18,7 @@ import { filterQueryHandle } from '@/utils/globalUtils';
 
 export const apiRequest = async (method, url, auth, params = null) => {
     // 地端API
-    let hostAppURL: string = '';
+    // let hostAppURL: string = '';
 
     // API初始化設定
     let apiEnv = import.meta.env.VITE_ENV; //現在環境
@@ -40,15 +40,14 @@ export const apiRequest = async (method, url, auth, params = null) => {
     // let apiURLAccount = 'account/';
 
     // //user-setting
-    // let apiURLUser = `${apiURLAccount}/user/`;
+    // let apiGetMyInfo = `${apiURLAccount}/user/`;
 
     console.log('hostURL', apiEnv, hostURL);
 
     // 地端APP
     // let appApiReq = {};
-
     // let store = useGlobalStore();
-    // 01 - API hostURL, url via different environment
+
     switch (apiEnv) {
         case ENV.MOCK:
             hostName = `${window.location.origin}/`;
@@ -71,25 +70,15 @@ export const apiRequest = async (method, url, auth, params = null) => {
             break;
         default:
             hostURL = './mock';
-            hostAppURL = './mock/';
+        // hostAppURL = './mock/';
     } //end: switch
 
-    // 02 - api global initial setting
+    await axionInit(globalApiURL, hostURL);
 
-    switch (apiEnv) {
-        case ENV.MOCK:
-            axionInit(globalApiURL, hostURL);
-            break;
-        case ENV.DEV:
-        case ENV.PROD:
-        case ENV.STSGING:
-            const token = getCookie(COOKIE_NAME.TOKEN);
-            // const token = `Token rHRIlM54Is/wO3/WCxlacg==`;
-            console.log('token', token);
-            // globalApiURL.defaults.headers.common['Authorization'] = `Token ${token}`;
-            headers['Authorization'] = `Token ${token}`;
-            axionInit(globalApiURL, hostURL);
-            break;
+    if (auth) {
+        // const token = `Token rHRIlM54Is/wO3/WCxlacg==`; // mock
+        const token = getCookie(COOKIE_NAME.TOKEN);
+        headers['Authorization'] = `Token ${token}`;
     }
 
     try {
@@ -101,7 +90,6 @@ export const apiRequest = async (method, url, auth, params = null) => {
         });
 
         const { status, data } = globalApiURL;
-        console.log('globalApiURL', globalApiURL);
         if (status === 200) {
             return {
                 code: status,

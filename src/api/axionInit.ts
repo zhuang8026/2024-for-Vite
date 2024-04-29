@@ -50,12 +50,12 @@ let apiErrorHandle = (res, router, route) => {
 };
 
 // API 初始化 (包含 [請求攔截] client request & [回覆攔截] server response)
-export const axionInit = (req: any, base: string) => {
+export const axionInit = async (req: any, base: string) => {
     const store = useGlobalStore();
     const _router = useRouter();
     const _route = useRoute();
-    console.log('req', req);
-    console.log('router', _router);
+    // console.log('req', req);
+    // console.log('router', _router);
     console.log('base', base);
 
     req.defaults.baseURL = base;
@@ -120,6 +120,7 @@ export const axionInit = (req: any, base: string) => {
         }
     );
 
-    store.setApiReq(req);
+    // 存入 store/pinia
+    // store.setApiReq(req);
     return req;
 };

@@ -21,6 +21,8 @@ const routes = [
         name: 'Login',
         component: Login,
         meta: {
+            layout: 'full', // page style
+            theme: 'default', // defualt, white, grey
             requiresAuth: false // 不需要登录(token)
         }
     },
@@ -28,6 +30,8 @@ const routes = [
         path: '/logout',
         component: Logout,
         meta: {
+            layout: 'full',
+            theme: 'default', // defualt, white, grey
             requiresAuth: false
         }
     },
@@ -36,6 +40,8 @@ const routes = [
         name: 'Account',
         component: Profile,
         meta: {
+            layout: 'main',
+            theme: 'default', // defualt, white, grey
             requiresAuth: true
         },
         children: [
@@ -75,7 +81,7 @@ const routes = [
         path: '/dashboard',
         name: 'Dashboard',
         meta: {
-            layout: 'full',
+            layout: 'main',
             theme: 'default',
             requiresAuth: true
         },
@@ -85,7 +91,7 @@ const routes = [
         path: '/device',
         name: 'Device',
         meta: {
-            layout: 'full',
+            layout: 'main',
             theme: 'default',
             requiresAuth: true
         },
@@ -95,7 +101,7 @@ const routes = [
         path: '/event',
         name: 'Event',
         meta: {
-            layout: 'full',
+            layout: 'main',
             theme: 'default',
             requiresAuth: true
         },
@@ -105,7 +111,7 @@ const routes = [
         path: '/gateway',
         name: 'Gateway',
         meta: {
-            layout: 'full',
+            layout: 'main',
             theme: 'default',
             requiresAuth: true
         },

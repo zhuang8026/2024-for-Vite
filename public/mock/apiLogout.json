@@ -1,6 +1,3 @@
 {
-    "code": 200,
-    "data": {
-        "message": "登出成功"
-    }
+    "message": "登出成功"
 }

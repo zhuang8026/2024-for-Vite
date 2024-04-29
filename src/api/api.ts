@@ -20,9 +20,9 @@ export const apiLogout = async () => {
     return res;
 };
 
-export const apiURLUser = async () => {
+export const apiGetMyInfo = async () => {
     // 如果是开发环境，直接返回模拟数据
-    const url = apiEnv === ENV.MOCK ? `apiUser.json` : `account/user/`;
+    const url = apiEnv === ENV.MOCK ? `apiGetMyInfo.json` : `account/user/`;
     const res = await apiRequest('GET', url, true);
     return res;
 };

@@ -9,7 +9,7 @@ export const useGlobalStore = defineStore({
         isFirstLogin: true,
         apiRequestCount: 0, // 統計 api 呼叫總數
         apiReq: axios.create({}),
-        userRole: ROLE.ADMIN,
+        userRole: ROLE.ALL,
         sensorDetectSlectedId: '', // detect-sensor selected id, wheen detect, add it
         isLoadingOpen: false,
         isLoadingTest: 'Loading',

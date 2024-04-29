@@ -13,7 +13,7 @@ import { openLoading, closeLoading } from '@/utils/globalUtils';
 import { setCookie, getCookie } from '@/utils/cookie';
 
 //api
-import { apiLogin, apiURLUser } from '@/api/api.ts';
+import { apiLogin, apiGetMyInfo } from '@/api/api.ts';
 
 export default {
     name: 'login',
@@ -33,7 +33,7 @@ export default {
 
         const login = async () => {
             openLoading('', 'Logging in...');
-            console.log('login', state);
+
             let payload = {
                 userEmail: state.account,
                 password: state.password
@@ -58,7 +58,7 @@ export default {
         // };
 
         // const API001 = async () => {
-        //     const res = await apiURLUser();
+        //     const res = await apiGetMyInfo();
         //     if (res.code === 200) {
         //         console.log('GET001API success:', res);
         //     } else {

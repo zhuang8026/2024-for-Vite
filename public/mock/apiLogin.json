@@ -1,8 +1,5 @@
 {
-    "code": 200,
-    "data": {
-        "id": 10,
-        "token": "XIOJSDOJDOFSFJDOSJFSO",
-        "isFirstLogin": true
-    }
+    "id": 10,
+    "token": "XIOJSDOJDOFSFJDOSJFSO",
+    "isFirstLogin": true
 }
