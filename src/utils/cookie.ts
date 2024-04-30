@@ -12,7 +12,7 @@ export const setCookie = (c_name, value, expire = -1) => {
 	// date.setSeconds(date.getSeconds() + expire);
 	// set cookie with expire time which format is iso8601
 	eraseCookie(c_name);
-	document.cookie += `${c_name}=${encodeURIComponent(value)};expires=${date.toUTCString()}`
+	document.cookie = `${c_name}=${encodeURIComponent(value)};expires=${date.toUTCString()}`
 }
 
 export const getCookie = (cname) => {
@@ -32,5 +32,5 @@ export const getCookie = (cname) => {
 }
 
 export const eraseCookie = (name) => {
-	document.cookie = name + '=; Max-Age=0'
+    document.cookie = `${name}=; Max-Age=0`;
 }

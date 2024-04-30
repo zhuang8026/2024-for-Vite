@@ -13,7 +13,7 @@ import { openLoading, closeLoading } from '@/utils/globalUtils';
 import { setCookie, getCookie } from '@/utils/cookie';
 
 //api
-import { apiLogin, apiGetMyInfo } from '@/api/api.ts';
+import { apiLogin } from '@/api/api.ts';
 
 export default {
     name: 'login',
@@ -55,15 +55,6 @@ export default {
 
         // let forgetPassword = () => {
         //     router.push({ name: FUN_NAME.PWD_FORGET });
-        // };
-
-        // const API001 = async () => {
-        //     const res = await apiGetMyInfo();
-        //     if (res.code === 200) {
-        //         console.log('GET001API success:', res);
-        //     } else {
-        //         console.log('GET001API error:', res);
-        //     }
         // };
 
         return {

@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router';
 // import { COOKIE_NAME } from '@/assets/enum/enum';
 
 // utils
+import { useI18n } from 'vue-i18n';
 // import { openLoading, closeLoading } from '@/utils/globalUtils';
 // import { setCookie, getCookie, eraseCookie } from '@/utils/cookie';
 
@@ -16,6 +17,13 @@ export default {
     setup() {
         let router = useRouter();
 
-        return {};
+        const { locale } = useI18n();
+        const handleChangeLanguage = e => {
+            locale.value = e.target.value;
+        };
+
+        return {
+            handleChangeLanguage
+        };
     }
 };

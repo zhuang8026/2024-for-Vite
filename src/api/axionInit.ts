@@ -2,6 +2,9 @@
 import { useRoute, useRouter } from 'vue-router';
 import { useGlobalStore } from '@/store/index';
 
+// axios
+import axios from 'axios';
+
 // utils 工具
 // import { getCookie } from '@/utils/cookie';
 
@@ -56,12 +59,13 @@ export const axionInit = async (req: any, base: string) => {
     const _route = useRoute();
     // console.log('req', req);
     // console.log('router', _router);
+    console.log('axionInit start');
     console.log('base', base);
 
-    req.defaults.baseURL = base;
+    axios.defaults.baseURL = base;
 
     // [請求攔截] client request
-    req.interceptors.request.use(
+    axios.interceptors.request.use(
         (config: any) => {
             let requestCount = store.getApiRequestCount;
             requestCount++;
@@ -83,7 +87,7 @@ export const axionInit = async (req: any, base: string) => {
     );
 
     // [回覆攔截] server response
-    req.interceptors.response.use(
+    axios.interceptors.response.use(
         // [API回覆成功]
         function (response: any) {
             let store = useGlobalStore();
@@ -122,5 +126,5 @@ export const axionInit = async (req: any, base: string) => {
 
     // 存入 store/pinia
     // store.setApiReq(req);
-    return req;
+
 };

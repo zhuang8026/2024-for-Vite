@@ -8,13 +8,11 @@ import { COOKIE_NAME, ENV } from '@/assets/enum/enum';
 
 // utils 工具
 import { getCookie } from '@/utils/cookie';
-import { axionInit } from '@/api/axionInit.ts';
+// import { axionInit } from '@/api/axionInit.ts';
 // import { filterQueyrHandle } from '@/utils/globalUtils';
 
 // component
 // import uiLoading from '@/components/ui/Loading/index';
-
-// let host = 'http://127.0.0.1:8002/api/Device/Equipment/'
 
 export const apiRequest = async (method, url, auth, params = null) => {
     // 地端API
@@ -38,9 +36,6 @@ export const apiRequest = async (method, url, auth, params = null) => {
     // let apiURLDiagnostic = 'diagnostics';
     // let apiURLSystem = 'system/';
     // let apiURLAccount = 'account/';
-
-    // //user-setting
-    // let apiGetMyInfo = `${apiURLAccount}/user/`;
 
     console.log('hostURL', apiEnv, hostURL);
 
@@ -73,7 +68,7 @@ export const apiRequest = async (method, url, auth, params = null) => {
         // hostAppURL = './mock/';
     } //end: switch
 
-    await axionInit(globalApiURL, hostURL);
+    // await axionInit(globalApiURL, hostURL);
 
     if (auth) {
         // const token = `Token rHRIlM54Is/wO3/WCxlacg==`; // mock
@@ -90,6 +85,7 @@ export const apiRequest = async (method, url, auth, params = null) => {
         });
 
         const { status, data } = globalApiURL;
+
         if (status === 200) {
             return {
                 code: status,
@@ -100,9 +96,9 @@ export const apiRequest = async (method, url, auth, params = null) => {
         }
     } catch (error: any) {
         console.log(`API ERROR:`, error);
-        return  {
+        return {
             code: error.response.status,
             data: error.message
-        };;
+        };
     }
 };
