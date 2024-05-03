@@ -1,3 +1,4 @@
+import { computed, reactive, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 
 // enum 映射
@@ -10,20 +11,47 @@ import { useI18n } from 'vue-i18n';
 
 // import { apiLogout } from '@/api/api.ts';
 
+import FormattedI18n from '@/components/ui/FormattedI18n';
+
 export default {
     name: 'dashboard',
-    components: {},
+    components: { FormattedI18n },
     props: [],
     setup() {
         let router = useRouter();
+        const { t, locale } = useI18n();
 
-        const { locale } = useI18n();
+        const formattedI18n = (text_key: String) => {
+            // 將文字中的"//"標記轉換為可點擊的 span 標籤
+            // console.log(t('dashboard_desc').replace(/\/\/(.*?)\/\//g, ' '));
+            console.log(t(`${text_key}`).split('//'));
+            // return t('dashboard_desc').replace(
+            //     /\/\/(.*?)\/\//g,
+            //     '<a class="clickable" @click="handleClick">$1</a>'
+            // );
+        };
+
+        const handleClick = index => {
+            // 點擊事件處理函數
+
+            alert('handleClick ->' + index);
+        };
+
+        const handleClick2 = index => {
+            // 點擊事件處理函數
+            alert('handleClick2 ->' + index);
+        };
+
+        // 語言轉換
         const handleChangeLanguage = e => {
             locale.value = e.target.value;
         };
 
         return {
-            handleChangeLanguage
+            handleChangeLanguage,
+            formattedI18n,
+            handleClick,
+            handleClick2
         };
     }
 };

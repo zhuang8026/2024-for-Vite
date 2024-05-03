@@ -10,5 +10,5 @@ export const Permissions = {
     Dashboard: [ROLE.ADMIN, ROLE.POWERUSER, ROLE.USER],
     Device: [ROLE.ADMIN, ROLE.POWERUSER],
     Event: [ROLE.ADMIN, ROLE.POWERUSER],
-    Gateway: [ROLE.ADMIN, ROLE.POWERUSER]
+    Gateway: [ROLE.ADMIN, ROLE.POWERUSER, ROLE.USER]
 };

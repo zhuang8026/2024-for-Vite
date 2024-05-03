@@ -7,6 +7,10 @@ import { COOKIE_NAME, FUN_NAME } from '@/assets/enum/enum';
 // utils
 import { openLoading, closeLoading } from '@/utils/globalUtils';
 import { setCookie, getCookie, eraseCookie } from '@/utils/cookie';
+import { Permissions } from '@/utils/permission';
+
+// store
+import { useGlobalStore } from '@/store/index';
 
 import { apiLogout } from '@/api/api.ts';
 
@@ -16,6 +20,15 @@ const Menu = {
     props: [],
     setup() {
         let router = useRouter();
+
+        const checkAuth = routerName => {
+            const store = useGlobalStore();
+            const user = store.userRole;
+            let permissionList: any = Permissions[routerName];
+
+            return permissionList.includes(user);
+        };
+
         // menu
         let menu = reactive([
             {
@@ -25,22 +38,22 @@ const Menu = {
                         icon: '',
                         name: 'Overall',
                         link: 'Dashboard',
-                        isShow: true
+                        isShow: checkAuth('Dashboard')
                     }
                 ],
-                isShow: true
+                isShow: checkAuth('Dashboard')
             },
             {
                 main: 'Equipment Management',
                 subList: [
                     {
                         icon: '',
-                        name: 'Device information',
+                        name: 'Device log',
                         link: 'Device',
-                        isShow: true
+                        isShow: checkAuth('Device')
                     }
                 ],
-                isShow: true
+                isShow: checkAuth('Device')
             },
             {
                 main: 'Event Management',
@@ -49,24 +62,24 @@ const Menu = {
                         icon: '',
                         name: 'Event Log',
                         link: 'Event',
-                        isShow: true
+                        isShow: checkAuth('Event')
                     }
                 ],
-                isShow: true
+                isShow: checkAuth('Event')
             },
             {
                 main: 'Gateway Management',
                 subList: [
                     {
                         icon: '',
-                        name: 'Gateway',
+                        name: 'Gateway list',
                         link: 'Gateway',
-                        isShow: true
+                        isShow: checkAuth('Gateway')
                     }
                 ],
-                isShow: true
+                isShow: checkAuth('Gateway')
             }
-        ]); //end: menu
+        ]);
 
         //點擊menu
         let onClickMenu = (menuName: string) => {
@@ -88,6 +101,9 @@ const Menu = {
 
             closeLoading('');
         };
+
+        // onMounted(() => {});
+
         return { menu, logout, onClickMenu };
     }
 };

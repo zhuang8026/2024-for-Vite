@@ -62,24 +62,24 @@ router.beforeEach(async (to, from, next) => {
             store.setRole(role);
         }
 
-        let permisson = Permissions[pageName];
+        let permission = Permissions[pageName];
         let currentRole = store.userRole;
 
         /**
          * check permission
          * @type {string|boolean}
-         * permisson = 'all' or ['admin', 'user']
+         * permission = 'all' or ['admin', 'user']
          * 'all' => true (全部用戶都有權限)
          */
-        if (typeof permisson == 'string') {
+        if (typeof permission == 'string') {
             isHasAuth = true;
         } else {
-            isHasAuth = permisson.includes(currentRole);
+            isHasAuth = permission.includes(currentRole);
         }
         isHasAuth ? next() : next('/login');
 
         console.log('to', pageName);
-        console.log('permisson', permisson);
+        console.log('permission', permission);
         console.log('currentRole', currentRole);
         console.log('isHasAuth', isHasAuth);
     } else {
