@@ -5,9 +5,9 @@
     <FormattedI18n :text_key="'dashboard_definition'" @onClick="handleClick2"></FormattedI18n>
     <div>
         切換語言：
-        <select @change="handleChangeLanguage">
+        <select v-model="selectedLanguage" @change="handleChangeLanguage">
             <option value="en-US">English</option>
-            <option value="zh-TW">中文</option>
+            <option value="zh-TW" selected>中文</option>
         </select>
     </div>
 </section>

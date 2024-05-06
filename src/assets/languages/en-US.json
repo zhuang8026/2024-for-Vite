@@ -1,5 +1,16 @@
 {
     "dashboard_header": "What is a dashboard? A complete overview",
     "dashboard_desc": "In this day and age, understanding data is the key to making the best decisions for any business. However, the amount of information that’s available at any time can be overwhelming for the most data-savvy person. So what’s the key to making //data-driven decisions//? Finding the most important data and formatting it in a way that’s easy to understand. This can change, depending on who will view the data. If you’re an industry expert, you may find complex data easier to understand. If you’re presenting data to less well-versed stakeholders at your company, you may need to simplify it before sharing it with others. One of the easiest ways to make data easy to understand for technical and non-technical audiences is to create a dashboard that easily displays all of your //data visualizations// in one place.",
-    "dashboard_definition": "And since dashboards use visualizations like //tables//, graphs, and //charts//, others who aren’t as close to the data can quickly and easily understand the story it tells or the insights it reveals. "
+    "dashboard_definition": "And since dashboards use visualizations like //tables//, graphs, and //charts//, others who aren’t as close to the data can quickly and easily understand the story it tells or the insights it reveals. ",
+    "menu": {
+        "menu": "Menu",
+        "dashboard": "Dashboard",
+        "overall": "Overall",
+        "equipment_management": "Equipment Management",
+        "device_log": "Device Log",
+        "event_management": "Event Management",
+        "event_log": "Event Log",
+        "gateway_management": "Gateway Management",
+        "gateway_list": "Gateway List"
+    }
 }

@@ -19,5 +19,5 @@ export const ENV = {
 
 export const COOKIE_NAME = {
 	TOKEN: 'WILLIAMS_TOKEN',
-
+    LANG: 'WILLIAMS_LANG'
 }

@@ -1,6 +1,6 @@
 <template>
     <section class="menu">
-        <h4>Menu Component</h4>
+        <h4>{{$t('menu.menu')}}</h4>
         <ul class="">
             <li v-for="(submenu, subIndex) in menu">
                 <p class="" v-if="submenu.isShow">

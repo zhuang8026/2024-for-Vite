@@ -33,7 +33,7 @@ export default {
 
         const formattedI18n = computed(() => {
             let arr = t(`${props.text_key}`).split(/(\/\/.*?\/\/)/);
-            console.log('formattedI18n:', arr);
+            // console.log('formattedI18n:', arr);
             return arr;
         });
 

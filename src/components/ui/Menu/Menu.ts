@@ -5,6 +5,7 @@ import { useRouter } from 'vue-router';
 import { COOKIE_NAME, FUN_NAME } from '@/assets/enum/enum';
 
 // utils
+import { useI18n } from 'vue-i18n';
 import { openLoading, closeLoading } from '@/utils/globalUtils';
 import { setCookie, getCookie, eraseCookie } from '@/utils/cookie';
 import { Permissions } from '@/utils/permission';
@@ -20,6 +21,7 @@ const Menu = {
     props: [],
     setup() {
         let router = useRouter();
+        const { t, locale } = useI18n();
 
         const checkAuth = routerName => {
             const store = useGlobalStore();
@@ -32,11 +34,13 @@ const Menu = {
         // menu
         let menu = reactive([
             {
-                main: 'Dashboard',
+                main: t(`menu.dashboard`),
+                key: 'dashboard',
                 subList: [
                     {
                         icon: '',
-                        name: 'Overall',
+                        key: 'overall',
+                        name: t(`menu.overall`),
                         link: 'Dashboard',
                         isShow: checkAuth('Dashboard')
                     }
@@ -44,11 +48,13 @@ const Menu = {
                 isShow: checkAuth('Dashboard')
             },
             {
-                main: 'Equipment Management',
+                main: t(`menu.equipment_management`),
+                key: 'equipment_management',
                 subList: [
                     {
                         icon: '',
-                        name: 'Device log',
+                        key: 'device_log',
+                        name: t(`menu.device_log`),
                         link: 'Device',
                         isShow: checkAuth('Device')
                     }
@@ -56,11 +62,13 @@ const Menu = {
                 isShow: checkAuth('Device')
             },
             {
-                main: 'Event Management',
+                main: t(`menu.event_management`),
+                key: 'event_management',
                 subList: [
                     {
                         icon: '',
-                        name: 'Event Log',
+                        key: 'event_log',
+                        name: t(`menu.event_log`),
                         link: 'Event',
                         isShow: checkAuth('Event')
                     }
@@ -68,11 +76,13 @@ const Menu = {
                 isShow: checkAuth('Event')
             },
             {
-                main: 'Gateway Management',
+                main: t(`menu.gateway_management`),
+                key: 'gateway_management',
                 subList: [
                     {
                         icon: '',
-                        name: 'Gateway list',
+                        key: 'gateway_list',
+                        name: t(`menu.gateway_list`),
                         link: 'Gateway',
                         isShow: checkAuth('Gateway')
                     }
@@ -101,6 +111,21 @@ const Menu = {
 
             closeLoading('');
         };
+
+        // 监听语言切换事件
+        watch(
+            () => locale.value,
+            () => {
+                console.log('locale', locale.value);
+                // 更新翻译内容
+                menu.forEach(item => {
+                    item.main = t(`menu.${item.key}`);
+                    item.subList.forEach(subItem => {
+                        subItem.name = t(`menu.${subItem.key}`);
+                    });
+                });
+            }
+        );
 
         // onMounted(() => {});
 
