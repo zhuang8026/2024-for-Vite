@@ -11,6 +11,7 @@
         "event_management": "Event Management",
         "event_log": "Event Log",
         "gateway_management": "Gateway Management",
-        "gateway_list": "Gateway List"
+        "gateway_list": "Gateway List",
+        "user_logout": "Logout"
     }
 }

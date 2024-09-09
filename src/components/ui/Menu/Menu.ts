@@ -22,6 +22,7 @@ const Menu = {
     setup() {
         let router = useRouter();
         const { t, locale } = useI18n();
+        const selectedLanguage = ref('zh-TW');
 
         const checkAuth = routerName => {
             const store = useGlobalStore();
@@ -112,6 +113,13 @@ const Menu = {
             closeLoading('');
         };
 
+        // 語言轉換
+        const handleChangeLanguage = e => {
+            locale.value = e.target.value;
+            selectedLanguage.value = e.target.value;
+            setCookie(COOKIE_NAME.LANG, e.target.value);
+        };
+
         // 监听语言切换事件
         watch(
             () => locale.value,
@@ -129,7 +137,13 @@ const Menu = {
 
         // onMounted(() => {});
 
-        return { menu, logout, onClickMenu };
+        return {
+            menu,
+            selectedLanguage, // 語言選擇
+            logout,
+            onClickMenu,
+            handleChangeLanguage // 語言切換
+        };
     }
 };
 

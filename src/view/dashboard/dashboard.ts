@@ -22,15 +22,15 @@ export default {
         const { t, locale } = useI18n();
         const selectedLanguage = ref('zh-TW');
 
-        const formattedI18n = (text_key: String) => {
-            // 將文字中的"//"標記轉換為可點擊的 span 標籤
-            // console.log(t('dashboard_desc').replace(/\/\/(.*?)\/\//g, ' '));
-            console.log(t(`${text_key}`).split('//'));
-            // return t('dashboard_desc').replace(
-            //     /\/\/(.*?)\/\//g,
-            //     '<a class="clickable" @click="handleClick">$1</a>'
-            // );
-        };
+        // const formattedI18n = (text_key: String) => {
+        //     // 將文字中的"//"標記轉換為可點擊的 span 標籤
+        //     // console.log(t('dashboard_desc').replace(/\/\/(.*?)\/\//g, ' '));
+        //     console.log(t(`${text_key}`).split('//'));
+        //     // return t('dashboard_desc').replace(
+        //     //     /\/\/(.*?)\/\//g,
+        //     //     '<a class="clickable" @click="handleClick">$1</a>'
+        //     // );
+        // };
 
         const handleClick = index => {
             // 點擊事件處理函數
@@ -48,7 +48,6 @@ export default {
             locale.value = e.target.value;
             selectedLanguage.value = e.target.value;
             setCookie(COOKIE_NAME.LANG, e.target.value);
-
         };
 
         onMounted(() => {
@@ -58,11 +57,11 @@ export default {
                 setCookie(COOKIE_NAME.LANG, lang);
             }
             selectedLanguage.value = lang;
-        })
+        });
         return {
             selectedLanguage,
             handleChangeLanguage,
-            formattedI18n,
+            // formattedI18n,
             handleClick,
             handleClick2
         };

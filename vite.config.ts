@@ -8,7 +8,7 @@ import vue from '@vitejs/plugin-vue';
 // })
 
 export default ({ mode }) => {
-
+    console.log('mode', mode);
     // const env = loadEnv(mode, process.cwd()); // 加载当前环境的环境变量
     return defineConfig({
         base: `./`,

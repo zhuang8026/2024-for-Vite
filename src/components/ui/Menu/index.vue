@@ -1,6 +1,6 @@
 <template>
     <section class="menu">
-        <h4>{{$t('menu.menu')}}</h4>
+        <h4>{{ $t('menu.menu') }}</h4>
         <ul class="">
             <li v-for="(submenu, subIndex) in menu">
                 <p class="" v-if="submenu.isShow">
@@ -24,7 +24,15 @@
             </li>
         </ul>
         <br /><br />
-        <button @click="logout">Logout</button>
+        <button @click="logout">{{ $t('menu.user_logout') }}</button>
+        <br /><br />
+        <div>
+            切換語言：
+            <select v-model="selectedLanguage" @change="handleChangeLanguage">
+                <option value="en-US">English</option>
+                <option value="zh-TW" selected>中文</option>
+            </select>
+        </div>
     </section>
 </template>
 <script src="./Menu.ts" lang="ts"></script>

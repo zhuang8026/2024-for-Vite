@@ -11,6 +11,7 @@
         "event_management": "事件管理",
         "event_log": "事件日誌",
         "gateway_management": "網關管理",
-        "gateway_list": "網關清單"
+        "gateway_list": "網關清單",
+        "user_logout": "登出"
     }
 }
